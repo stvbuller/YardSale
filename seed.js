@@ -49,6 +49,28 @@ user1.save(function(err) {
   item1.save(function(err) {
     if (err) return (err);
   });
+  //create a second item
+  var item2 = new Item({
+    _owner: user1.id,
+    itemName: 'wheel',
+    itemDescription: 'used zipp wheel',
+    itemPrice: 1500,
+    itemSold: false
+  });
+  item2.save(function(err) {
+    if (err) return (err);
+  });
+  //create a third item
+  var item3 = new Item({
+    _owner: user1.id,
+    itemName: 'handlebars',
+    itemDescription: 'used ttt handlebars',
+    itemPrice: 150,
+    itemSold: true
+  });
+  item3.save(function(err) {
+    if (err) return (err);
+  });
 });
 
 //create a second user
