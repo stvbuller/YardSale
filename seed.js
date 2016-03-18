@@ -26,7 +26,18 @@ user1.save(function(err) {
     _owner: user1.id,
     itemLink: "frame"
   });
-  comment1.save();
+  var comment2 = new Comment({
+    commentMsg: "really great frame",
+    _owner: user1.id,
+    itemLink: "frame"
+  })
+  comment1.save(function(err){
+    if (err) return (err);
+    comment2.save(function(err) {
+      if (err) return (err);
+    });
+  });
+
   //create an item
   var item1 = new Item({
     _owner: user1.id,
@@ -35,7 +46,9 @@ user1.save(function(err) {
     itemPrice: 1000,
     itemSold: false
   });
-  item1.save();
+  item1.save(function(err) {
+    if (err) return (err);
+  });
 });
 
 //create a second user
