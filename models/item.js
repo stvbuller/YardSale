@@ -7,7 +7,7 @@ var itemSchema = new Schema({
   itemDescription: String,
   itemPrice: Number,
   itemSold: Boolean,
-  comments[{
+  comments:[{
     type: Schema.Types.ObjectId,
     ref: 'Comment'
   }]
