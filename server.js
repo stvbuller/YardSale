@@ -9,7 +9,6 @@ mongoose.connect(db);
 
 var PORT = process.env.PORT || 3000;
 
-
 var User = require("./models/user");
 var Item = require("./models/item");
 var Comment = require("./models/comment");
