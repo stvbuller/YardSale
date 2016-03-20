@@ -7,7 +7,35 @@
 </head>
 <body ng-controller="yardSaleController">
   <h1>Yard Sale<h1>
-  <div class="row">
+
+  <div class="row" ng-hide="yardSaleController.loggedIn">
+    <div class="col-md-6">
+      <form ng-submit="loginUser()">
+        <div class="form-group">
+          <label for="userName">Name</label>
+          <input type="text" class="form-control" ng-model="userName" id="userName" placeholder="Name">
+        </div>
+        <div class="form-group">
+          <label for="userPassword">Password</label>
+          <input type="text" class="form-control" ng-model="userPassword" id="userPassword" placeholder="Password">
+        </div>
+        <button type="submit" class="btn btn-default">Login</button>
+      </form>
+    </div>
+    <div class="col-md-6">
+    </div>
+  </div>
+
+  <div class="row" ng-hide="yardSaleController.loggedIn">
+    <div class="col-md-6" ng-repeat="user in users">
+      <h2>Hi, {{user.name}}!</h2>
+      <h3>You can spend: {{user.money | currency}}</h3>
+    </div>
+    <div class="col-md-6">
+    </div>
+  </div>
+
+  <div class="row" ng-init="getItems()">
     <div class="col-md-12">
       <table class="table">
         <thead>
@@ -18,19 +46,19 @@
             <th>Owned by</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody ng-repeat="item in items">
           <tr>
             <td>
-              {{ <!-- item name --> }}
+              {{ item.itemName }}
             </td>
             <td>
-              {{ <!-- item cost --> }}
+              {{ item.itemPrice }}
             </td>
             <td>
-              {{ <!-- item description --> }}
+              {{ item.itemDescription }}
             </td>
             <td>
-              {{ <!-- item owner --> }}
+              {{ item._owner }}
             </td>
           </tr>
           <tr>
@@ -56,10 +84,10 @@
   <h3>List Your Item For Sale<h3>
   <div class="row">
     <div class="col-md-6">
-      <form>
+      <form ng-submit="listItem()">
         <div class="form-group">
-          <label for="itemName">Name</label>
-          <input type="text" class="form-control" ng-model="itemName" id="itemName" placeholder="Name">
+          <label for="itemName">Item Name</label>
+          <input type="text" class="form-control" ng-model="itemName" id="itemName" placeholder="Item Name">
         </div>
         <div class="form-group">
           <label for="itemDescription">Description</label>
@@ -69,8 +97,10 @@
           <label for="itemPrice">Price</label>
           <input type="text" class="form-control" ng-model="itemPrice" id="itemPrice" placeholder="Price">
         </div>
-        <button type="button" class="btn btn-default" ng-click="listItem()">List Item</button>
+        <button type="submit" class="btn btn-default">List Item</button>
       </form>
+    </div>
+    <div class="col-md-6">
     </div>
   </div>
 

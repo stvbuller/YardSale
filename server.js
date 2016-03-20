@@ -25,6 +25,51 @@ app.get('/', function(req, res) {
   res.sendFile(process.cwd() + '/public/index.html');
 });
 
+app.get('/getItems', function(req, res) {
+  Item.find({itemSold: 'false'}).exec().then(function(dbItems) {
+    console.log(" db items" + dbItems);
+    res.json(dbItems);
+  });
+});
+
+app.post('/login', function(req, res) {
+  console.log(req.body.username);
+  User.find({name: req.body.username, password: req.body.password}).exec().then(function(dbUser) {
+    console.log(" db user" + dbUser);
+    res.json(dbUser);
+  });
+});
+
+app.post('/listItem', function(req, res) {
+  console.log(req.body);
+  var item = new Item({
+    _owner: req.body.owner,
+    itemName: req.body.name,
+    itemDescription: req.body.description,
+    itemPrice: req.body.price,
+    itemSold: req.body.sold
+  });
+
+  item.save(function(err) {
+    if (err) return (err);
+  });
+});
+
+//*** not working ****
+app.post('/postComment', function(req, res) {
+  console.log(req.body);
+  var comment = new Comment({
+    _owner: req.body.owner,
+    itemLink: req.body.link,
+    commentMsg: req.body.message
+  });
+
+  comment.save(function(err) {
+    if (err) return (err);
+  });
+});
+
+
 
 app.listen(PORT, function() {
   console.log("listening on port", PORT);
