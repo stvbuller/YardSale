@@ -30,6 +30,7 @@
     <div class="col-md-6" ng-repeat="user in users">
       <h2>Hi, {{user.name}}!</h2>
       <h3>You can spend: {{user.money | currency}}</h3>
+      <h3>Collected Items: {{user.collectedItems}}</h3>
     </div>
     <div class="col-md-6">
     </div>
@@ -44,6 +45,7 @@
             <th>Cost</th>
             <th>Description</th>
             <th>Owned by</th>
+            <th>Comments</th>
           </tr>
         </thead>
         <tbody ng-repeat="item in items">

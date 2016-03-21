@@ -69,7 +69,11 @@ app.post('/postComment', function(req, res) {
   });
 });
 
-
+//*** not working ****
+app.post('/buyItem', function(req, res) {
+  console.log(req.body);
+  //update the item to idicate it has been purchased
+});
 
 app.listen(PORT, function() {
   console.log("listening on port", PORT);

@@ -12,9 +12,9 @@ angular.module('yardSaleApp')
     .then(function(loginResponse) {
       $scope.users = loginResponse.data;
       //$scope.loggedIn = true;
-      if ($scope.userName === loginResponse.data[0].name) {
-        $scope.loggedIn = true;
-      }
+      // if ($scope.userName === loginResponse.data[0].name) {
+      //   $scope.loggedIn = true;
+      // }
       console.log(loginResponse.data[0].name);
       console.log(loginResponse.data);
       //console.log($scope.userName);
@@ -23,7 +23,7 @@ angular.module('yardSaleApp')
 
   $scope.listItem = function() {
     $http.post('/listItem', {
-      owner: $scope._id,
+      owner: $scope._id,      //*** not working, need to get users _id
       name: $scope.itemName,
       description:$scope.itemDescription,
       price: $scope.itemPrice,
@@ -44,5 +44,11 @@ angular.module('yardSaleApp')
     $scope.getItems();
   }
 
-
+  //*** not working ****
+  $scope.buyItem = function() {
+    $http.post('/buyItem', {
+      //update the item to indicate it has been purchased
+    });
+    $scope.getItems();
+  }
 });
